@@ -1,11 +1,11 @@
 import Button from '../../../../common/Button/Button'
 import './CourseCard.css'
 
-function CourseCard({course}) {
+function CourseCard({course, authors}) {
 
     const hours = Math.floor(course.duration / 60 % 60).toString();
     const minutes = Math.floor(course.duration / 60 / 60 % 60).toString();
-
+    
   return (
     <div className='card'>
         <div className="cardContent">
@@ -16,7 +16,7 @@ function CourseCard({course}) {
             <div className="cardBlockInfo">
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Authors:</p>
-                    <p>Author</p>
+                    <p></p>
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Duration:</p>
