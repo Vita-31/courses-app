@@ -19,6 +19,14 @@
     color: #000;
 }
 
+.btn-blue {
+    background-color: #4470E3;
+}
+
+.btn-blue:hover {
+    background-color: #6993ff;
+}
+
 .btn-border {
     border: 1px solid transparent;
 }
