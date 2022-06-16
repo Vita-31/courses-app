@@ -1,30 +1,30 @@
 import Button from '../../../../common/Button/Button'
 import './CourseCard.css'
 
-function CourseCard() {
+function CourseCard({course}) {
+
+    const hours = Math.floor(course.duration / 60 % 60).toString();
+    const minutes = Math.floor(course.duration / 60 / 60 % 60).toString();
+
   return (
     <div className='card'>
         <div className="cardContent">
-            <h2 className="cardTitle">Corse title</h2>
-            <p className="cardDesc">
-                The community is home to millions of people from around the world who are curious and passionate about exploring and expressing their creativity.
-                Domestika curates its teacher roster and produces every course in-house to ensure a high-quality online learning experienc
-                Each expert teaches what they do best, with clear guidelines, true passion, and professional insight in every lesson.
-            </p>
+            <h2 className="cardTitle">{ course.title }</h2>
+            { course && <p className="cardDesc">{ course.description }</p>}
         </div>
         <div className="cardBlock">
             <div className="cardBlockInfo">
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Authors:</p>
-                    <p>Author, Author</p>
+                    <p>Author</p>
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Duration:</p>
-                    <p>08:00 + hours</p>
+                    <p>{ hours < 9 ? `0${hours}` : hours } : {minutes < 9 ? `0${minutes}` : minutes} hours</p>
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Created:</p>
-                    <p>01.02.22</p>
+                    <p>{ course.creationDate }</p>
                 </div>
             </div>
             <div className="cardBtn">
