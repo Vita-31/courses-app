@@ -1,11 +1,12 @@
 import Button from '../../../../common/Button/Button'
+import { mockedAuthorsList } from '../../../../constants'
+import { dateGenerator } from '../../../../helpers/dateGeneratop'
 import './CourseCard.css'
 
-function CourseCard({course, authors}) {
+function CourseCard({course}) {
+   const {hours, min} = dateGenerator(course.duration) 
+   const courseAuthors = course.authors
 
-    const hours = Math.floor(course.duration / 60 % 60).toString();
-    const minutes = Math.floor(course.duration / 60 / 60 % 60).toString();
-    
   return (
     <div className='card'>
         <div className="cardContent">
@@ -15,12 +16,12 @@ function CourseCard({course, authors}) {
         <div className="cardBlock">
             <div className="cardBlockInfo">
                 <div className="cardInfo">
-                    <p className="cardInfoTitle">Authors:</p>
+                    <p className="cardInfoTitle">Authors</p>
                     <p></p>
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Duration:</p>
-                    <p>{ hours < 9 ? `0${hours}` : hours } : {minutes < 9 ? `0${minutes}` : minutes} hours</p>
+                    <p>{ hours < 9 ? `0${hours}` : hours } : {min < 9 ? `0${min}` : min} hours</p>
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Created:</p>
