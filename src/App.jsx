@@ -1,4 +1,6 @@
 import './App.css';
+import Button from './common/Button/Button';
+import SearchBar from './components/Courses/components/SearchBar/SearchBar';
 import Courses from './components/Courses/Courses';
 import Header from './components/Header/Header';
 
@@ -8,7 +10,13 @@ function App() {
     <>
       <Header></Header>
       <div className="page container">
-        <Courses/>
+        <div className="actions">
+          <SearchBar/>
+          <Button bg="add" width="md">Add new course</Button>
+        </div>
+        <div className="page__courses">
+          <Courses/>
+        </div>
       </div>
     </>
   )

@@ -1,6 +1,7 @@
 import './Button.css'
 
 function Button({children, border, bg, width, ...props}) {
+  console.log(bg)
   const borderClass = border ? `btn-${border}` : '';
   const bgClass = bg ? `btn-${bg}` : '';
   const widthClass = width ? `btn-${width}` : ''

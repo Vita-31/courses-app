@@ -27,10 +27,30 @@
     background-color: #6993ff;
 }
 
+.btn-gradient {
+    background: linear-gradient(90deg, #16A085 30%, #4470E3 70%);
+    color: #fff;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+}
+
 .btn-border {
     border: 1px solid transparent;
 }
 
 .btn-md {
     width: 180px;
+}
+
+.btn-add {
+    border: 1px solid #FF6B18;
+    background-color: #FF6B18;
+    border-radius: 10px;
+    color: #fff;
+    height: 50px;
+}
+
+.btn-add:hover {
+    background-color: #ff9c63;
 }
