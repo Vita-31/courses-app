@@ -3,18 +3,18 @@ import CourseCard from './components/CourseCard/CourseCard'
 import './Courses.css'
 
 function Courses({searchQuery}) {
-
-
-  return (
-    <div className='courses'>
-        {mockedCoursesList
-        .filter(course => {
+  const filteredCourses = mockedCoursesList.filter(course => {
           return `${course.id} ${course.title}`.toLocaleLowerCase().includes(searchQuery)
         })
-        .map(course => {
+
+  return (
+    <>
+    {filteredCourses.length ? <div className='courses'>
+        {filteredCourses.map(course => {
             return <CourseCard key={course.id} course={course}/>
         })}
-    </div>
+    </div> : <h1>Courses not found!</h2>}
+    </>
   )
 }
 
