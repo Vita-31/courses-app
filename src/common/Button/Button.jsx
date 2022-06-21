@@ -1,13 +1,12 @@
 import './Button.css'
 
-function Button({children, border, bg, width, ...props}) {
-  console.log(bg)
+function Button({children, border, bg, width, type, ...props}) {
   const borderClass = border ? `btn-${border}` : '';
   const bgClass = bg ? `btn-${bg}` : '';
   const widthClass = width ? `btn-${width}` : ''
   const classes = [borderClass, bgClass, widthClass].filter(Boolean).join(' ')
   return (
-    <button {...props} className={`btn ${classes}`}>{children}</button>
+    <button {...props} className={`btn ${classes}`} type={type}>{children}</button>
   )
 }
 

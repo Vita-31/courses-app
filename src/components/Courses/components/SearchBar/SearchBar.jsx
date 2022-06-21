@@ -3,11 +3,18 @@ import Input from '../../../../common/Input/Input'
 import './SearchBar.css'
 
 function SearchBar() {
+
+    function search(event) {
+        event.preventDefault();
+        const searchQuery = event.target.search.value;
+        console.log(searchQuery)
+    }
+
   return (
-    <div className="searchbar">
-        <Input type="text" placeholder="Enter course name"/>
-        <Button bg="gradient" width="md">Search</Button>
-    </div>
+    <form className="searchbar" onSubmit={search}>
+        <Input type="text" name="search" placeholder="Enter course name"/>
+        <Button bg="gradient" width="md" type="submit">Search</Button>
+    </form>
   )
 }
 
