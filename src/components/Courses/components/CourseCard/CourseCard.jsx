@@ -5,7 +5,7 @@ import './CourseCard.css'
 
 function CourseCard({course}) {
    const {hours, min} = dateGenerator(course.duration) 
-   const courseAuthors = course.authors
+   const courseAuthorsNames = course.authors.map((authorId) => mockedAuthorsList.find((author) => authorId === author.id )?.name ).join(',')
 
   return (
     <div className='card'>
@@ -16,8 +16,8 @@ function CourseCard({course}) {
         <div className="cardBlock">
             <div className="cardBlockInfo">
                 <div className="cardInfo">
-                    <p className="cardInfoTitle">Authors</p>
-                    <p></p>
+                    <p className="cardInfoTitle">Authors:</p>
+                    <p>{courseAuthorsNames}</p>
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Duration:</p>
