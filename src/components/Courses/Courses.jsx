@@ -13,7 +13,7 @@ function Courses({searchQuery}) {
         {filteredCourses.map(course => {
             return <CourseCard key={course.id} course={course}/>
         })}
-    </div> : <h1>Courses not found!</h2>}
+    </div> : <h2>Courses not found!</h2>}
     </>
   )
 }

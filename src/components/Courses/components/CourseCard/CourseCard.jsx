@@ -1,10 +1,11 @@
 import Button from '../../../../common/Button/Button'
 import { mockedAuthorsList } from '../../../../constants'
+import { dateGeneration } from '../../../../helpers/dateGeneratop'
 import { pipeGenerator } from '../../../../helpers/pipeDuration'
 import './CourseCard.css'
 
 function CourseCard({course}) {
-   const courseAuthorsNames = course.authors.map((authorId) => mockedAuthorsList.find((author) => authorId === author.id )?.name ).join(',')
+   const courseAuthorsNames = course.authors.map((authorId) => mockedAuthorsList.find((author) => authorId === author.id )?.name ).join(', ')
 
   return (
     <div className='card'>
@@ -24,7 +25,7 @@ function CourseCard({course}) {
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Created:</p>
-                    <p>{ course.creationDate }</p>
+                    <p></p>
                 </div>
             </div>
             <div className="cardBtn">
