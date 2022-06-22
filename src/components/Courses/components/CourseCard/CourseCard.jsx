@@ -1,11 +1,9 @@
 import Button from '../../../../common/Button/Button'
 import { mockedAuthorsList } from '../../../../constants'
-import { dateGenerator } from '../../../../helpers/dateGeneratop'
+import { pipeGenerator } from '../../../../helpers/pipeDuration'
 import './CourseCard.css'
 
 function CourseCard({course}) {
-   const {hours, min} = dateGenerator(course.duration) 
-   const courseAuthors = course.authors
 
   return (
     <div className='card'>
@@ -21,7 +19,7 @@ function CourseCard({course}) {
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Duration:</p>
-                    <p>{ hours < 9 ? `0${hours}` : hours } : {min < 9 ? `0${min}` : min} hours</p>
+                    <p> {pipeGenerator(course.duration)} </p>
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Created:</p>
