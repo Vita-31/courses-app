@@ -4,8 +4,8 @@ import './Courses.css'
 
 function Courses({searchQuery}) {
   const filteredCourses = mockedCoursesList.filter(course => {
-          return `${course.id} ${course.title}`.toLocaleLowerCase().includes(searchQuery)
-        })
+    return `${course.id} ${course.title}`.toLocaleLowerCase().includes(searchQuery)
+  })
 
   return (
     <>

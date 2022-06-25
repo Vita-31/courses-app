@@ -7,7 +7,7 @@ function SearchBar({setSearchQuery}) {
 
     function search(event) {
         event.preventDefault();
-        const query = event.target.search.value;
+        const query = event.target.search.value.toLowerCase().trim();
         setSearchQuery(query)
     }
     
