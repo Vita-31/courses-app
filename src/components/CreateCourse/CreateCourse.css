@@ -40,6 +40,7 @@
 .courseAuthors {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     gap: 0 20px;
     margin-top: 60px;
 }
@@ -53,4 +54,41 @@
     font-size: 24px;
     line-height: 100%;
     text-align: center;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+}
+
+.box:not(:first-child) {
+    margin-top: 10px;
+}
+
+.name {
+    width: 200px;
+}
+
+.courseEmpty {
+    margin-top: 30px;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+}
+
+.duration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 5px;
+    margin-top: 30px;
+}
+
+.durationTime {
+    font-size: 26px;
+    line-height: 100%;
+}
+
+.durationText {
+    font-size: 20px;
 }

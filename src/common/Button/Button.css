@@ -57,3 +57,10 @@
 .btn-add:hover {
     background-color: #ff9c63;
 }
+
+.btn-author {
+    background: #F5F9FF;
+    border: 1px solid #0071FF;
+    border-radius: 8px;
+    color: #000;
+}
