@@ -10,8 +10,11 @@ function CreateCourse() {
   const [author, setAuthor] = useState({});
   const [minutes, setMinutes] = useState('');
   const [newCourse, setNewCourse] = useState({});
+  const [addedAuthor, setAddedAuthor] = useState([]);
+  const [removedAuthor, setRemovedAuthor] = useState([]);
 
-  function addAuthor(event) {
+
+  function createAuthor(event) {
     event.preventDefault()
     const authorNameValue = event.target.name.value.trim();
     setAuthor({id: Date.now(), name: authorNameValue})
@@ -36,8 +39,15 @@ function CreateCourse() {
   }
   mockedCoursesList.push(newCourse)
   mockedAuthorsList.push(author);
-  console.log(mockedCoursesList)
 
+  // function addAuthor(event) {
+  //   const authorId = event.target.id;
+  //   const authors = mockedAuthorsList.filter(a => {
+  //     const au = a.id !== authorId
+  //     return au
+  //   })
+  //   setAddedAuthor(author)
+  // }
   return (
     <div className='course'>
       <form onSubmit={addCourse}>
@@ -57,7 +67,7 @@ function CreateCourse() {
         <div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Add Author</h2>
-            <form className="courseBlock" onSubmit={addAuthor}>
+            <form className="courseBlock" onSubmit={createAuthor}>
               <h2 className="title">Author name:</h2>
               <Input type="text" name="name" placeholder="Enter author name"/>
             </form>
@@ -80,17 +90,17 @@ function CreateCourse() {
             { mockedAuthorsList.map(author => {
               return <div className="box" key={author.id}>
                 <div className="name" key={author.id}>{author.name}</div>
-                <Button bg='author' width="md">Add Author</Button>
+                <Button bg='author' width="md" id={author.id}>Add Author</Button>
               </div>
             })}
           </div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Course authors</h2>
             <div className="courseEmpty">Authors list is empty</div>
-            {/* <div className="box">
-              <div className="name">Author</div>
+            <div className="box">
+              <div className="name">author</div>
               <Button bg='author' width="md">Delete Author</Button>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
