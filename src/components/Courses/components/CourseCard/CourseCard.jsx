@@ -1,6 +1,6 @@
 import Button from '../../../../common/Button/Button'
 import { mockedAuthorsList } from '../../../../constants'
-import { dateGeneration } from '../../../../helpers/dateGeneratop'
+import { dateGeneration } from '../../../../helpers/dateGenerator'
 import { pipeGenerator } from '../../../../helpers/pipeDuration'
 import './CourseCard.css'
 
@@ -11,7 +11,7 @@ function CourseCard({course}) {
     <div className='card'>
         <div className="cardContent">
             <h2 className="cardTitle">{ course.title }</h2>
-            { course && <p className="cardDesc">{ course.description }</p>}
+            <p className="cardDesc">{ course.description }</p>
         </div>
         <div className="cardBlock">
             <div className="cardBlockInfo">
@@ -25,11 +25,11 @@ function CourseCard({course}) {
                 </div>
                 <div className="cardInfo">
                     <p className="cardInfoTitle">Created:</p>
-                    <p></p>
+                    <p>{ dateGeneration(course.creationDate) }</p>
                 </div>
             </div>
             <div className="cardBtn">
-                <Button border='border' bg='blue' width="md" className="cardBtn">Show course</Button>
+                <Button buttonText="Show course"/>
             </div>
         </div>
     </div>

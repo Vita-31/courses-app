@@ -2,7 +2,7 @@ import './Logo.css'
 
 function Logo() {
   return (
-    <a href="/" className='logo'>Courses</a>
+    <img src="" alt="Logo" width="1" height="1"/>
   )
 }
 

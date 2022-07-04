@@ -13,8 +13,8 @@ function SearchBar({setSearchQuery}) {
     
   return (
     <form className="searchbar" onSubmit={search}>
-        <Input type="text" name="search" placeholder="Enter course name"/>
-        <Button bg="gradient" width="md" type="submit">Search</Button>
+        <Input type="text" name="search" placeholderText="Enter course name"/>
+        <Button buttonText="Search" type="submit"/>
     </form>
   )
 }

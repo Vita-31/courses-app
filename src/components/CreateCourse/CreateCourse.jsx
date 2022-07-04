@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button'
 import Input from '../../common/Input/Input'
 import { mockedAuthorsList, mockedCoursesList } from '../../constants';
@@ -7,23 +8,35 @@ import './CreateCourse.css'
 
 function CreateCourse() {
 
-  const [author, setAuthor] = useState({});
-  const [minutes, setMinutes] = useState('');
-  const [newCourse, setNewCourse] = useState({});
-  const [addedAuthor, setAddedAuthor] = useState([]);
-  const [removedAuthor, setRemovedAuthor] = useState([]);
+  const navigate = useNavigate()
+
+  const [duration, setDuration] = useState('');
+  const [courses, setCourses] = useState({});
+  const [allAuthors, setAllAuthors] = useState(mockedAuthorsList);
+  const [courseAuthors, setCourseAuthors] = useState([])
 
 
   function createAuthor(event) {
     event.preventDefault()
-    const authorNameValue = event.target.name.value.trim();
-    setAuthor({id: Date.now(), name: authorNameValue})
+    const newAuthor = {
+      id: Date.now(), 
+      name: event.target.name.value.trim()
+    }
+    allAuthors(prev => [...prev, newAuthor])
   }
 
   function addMinutes(event) {
-    event.preventDefault();
-    const minutes = event.target.duration.value.trim();
-    setMinutes(minutes)
+    setDuration(Number(event.target.value))
+  }
+
+  function addAuthors(currentAuthor) {
+    setAllAuthors(prev => prev.filter(author => author.id !== currentAuthor.id))
+    setCourseAuthors(prev => [...prev, currentAuthor])
+  }
+
+  function deleteAuthors(currentAuthor) {
+    setCourseAuthors(prev => prev.filter(author => author.id !== currentAuthor.id))
+    setAllAuthors(prev => [...prev, currentAuthor])
   }
 
   function addCourse(event) {
@@ -32,22 +45,13 @@ function CreateCourse() {
       id: Date.now(),
       title: event.target.title.value.trim(),
       description: event.target.description.value.trim(),
-      duration: minutes,
-      authors: mockedAuthorsList.filter(author => {return author.id})
+      duration,
+      authors: courseAuthors.map(author => author.id)
     }
-    setNewCourse(newCourse)
+    setCourses(prev => [...prev, newCourse])
+    navigate('/')
   }
-  mockedCoursesList.push(newCourse)
-  mockedAuthorsList.push(author);
 
-  // function addAuthor(event) {
-  //   const authorId = event.target.id;
-  //   const authors = mockedAuthorsList.filter(a => {
-  //     const au = a.id !== authorId
-  //     return au
-  //   })
-  //   setAddedAuthor(author)
-  // }
   return (
     <div className='course'>
       <form onSubmit={addCourse}>
@@ -56,7 +60,7 @@ function CreateCourse() {
             <h2 className="title">Title:</h2>
             <Input type="text" name="title" placeholder="Enter title"/>
           </div>
-          <Button bg="add" width="md">Add course</Button>
+          <Button buttonText="Add course" />
         </div>
         <div className="courseBlock">
             <h2 className="title">Description:</h2>
@@ -74,33 +78,35 @@ function CreateCourse() {
           </div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Duration</h2>
-            <form className="courseBlock" onSubmit={addMinutes}>
+            <form className="courseBlock">
               <h2 className="title">Duration:</h2>
-              <Input type="number" name="duration" placeholder="Enter duration in minutes"/>
+              <Input type="number" name="duration" onChange={addMinutes} step="1" max="1000" placeholderText="Enter duration in minutes"/>
             </form>
             <div className="duration">
               <div className="title">Duration</div>
-              <div className="durationTime"> {pipeGenerator(minutes)} </div>
+              <div className="durationTime"> {pipeGenerator(duration)} </div>
             </div>
           </div>
         </div>
         <div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Authors</h2>
-            { mockedAuthorsList.map(author => {
+            { allAuthors.map(author => {
               return <div className="box" key={author.id}>
-                <div className="name" key={author.id}>{author.name}</div>
-                <Button bg='author' width="md" id={author.id}>Add Author</Button>
+                <div className="name">{author.name}</div>
+                <Button onClick={() => addAuthors(author)} buttonText="Add Author" />
               </div>
             })}
           </div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Course authors</h2>
-            <div className="courseEmpty">Authors list is empty</div>
-            <div className="box">
-              <div className="name">author</div>
-              <Button bg='author' width="md">Delete Author</Button>
-            </div>
+            {/* <div className="courseEmpty">Authors list is empty</div> */}
+            { courseAuthors.map(author => {
+              return <div className="box" key={author.id}>
+                <div className="name">{author.name}</div>
+                <Button onClick={() => deleteAuthors(author)} buttonText="Delete Author" />
+              </div>
+            })}
           </div>
         </div>
       </div>

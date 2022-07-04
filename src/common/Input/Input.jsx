@@ -1,8 +1,8 @@
-import React from './Input.css'
+import './Input.css'
 
-function Input({type, placeholder, name, ...props}) {
+function Input({type, placeholderText, name, ...props}) {
   return (
-    <input className='input' name={name} type={type} placeholder={placeholder} {...props}/>
+    <input className='input' name={name} type={type || ''} placeholder={placeholderText} {...props}/>
   )
 }
 

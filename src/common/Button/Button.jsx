@@ -1,12 +1,8 @@
 import './Button.css'
 
-function Button({children, border, bg, width, type, ...props}) {
-  const borderClass = border ? `btn-${border}` : '';
-  const bgClass = bg ? `btn-${bg}` : '';
-  const widthClass = width ? `btn-${width}` : ''
-  const classes = [borderClass, bgClass, widthClass].filter(Boolean).join(' ')
+function Button({buttonText, type, ...props}) {
   return (
-    <button {...props} className={`btn ${classes}`} type={type}>{children}</button>
+    <button {...props} className="btn" type={type || ''}>{buttonText}</button>
   )
 }
 

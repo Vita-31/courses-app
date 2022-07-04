@@ -1,66 +1,20 @@
 .btn {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 16px;
-    color: #fff;
-    padding: 10px;
-    height: 40px;
+    padding: 10px 20px;
+    height: 50px;
     cursor: pointer;
     transition: .3s;
-}
-
-.btn-green {
-    background-color: #1EA285;
-}
-
-.btn-green:hover {
-    background-color: rgba(30, 162, 133, 0.16);
-    border-color: #1EA285;
+    background: #F5F9FF;
+    border: 1px solid #0071FF;
+    border-radius: 8px;
     color: #000;
-}
-
-.btn-blue {
-    background-color: #4470E3;
-}
-
-.btn-blue:hover {
-    background-color: #6993ff;
-}
-
-.btn-gradient {
-    background: linear-gradient(90deg, #16A085 30%, #4470E3 70%);
-    color: #fff;
-    height: 50px;
-    border-radius: 10px;
-    border: none;
-}
-
-.btn-border {
-    border: 1px solid transparent;
-}
-
-.btn-md {
-    width: 180px;
-}
-
-.btn-add {
-    border: 1px solid #FF6B18;
-    background-color: #FF6B18;
-    border-radius: 10px;
-    color: #fff;
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.btn-add:hover {
-    background-color: #ff9c63;
-}
-
-.btn-author {
-    background: #F5F9FF;
-    border: 1px solid #0071FF;
-    border-radius: 8px;
-    color: #000;
+.btn:hover {
+    background-color: #98b7e7;
 }
