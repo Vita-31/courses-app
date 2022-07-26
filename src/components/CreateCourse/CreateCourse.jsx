@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button'
 import Input from '../../common/Input/Input'
-import { mockedAuthorsList, mockedCoursesList } from '../../constants';
+import { mockedAuthorsList } from '../../constants';
 import { pipeGenerator } from '../../helpers/pipeDuration';
 import './CreateCourse.css'
 

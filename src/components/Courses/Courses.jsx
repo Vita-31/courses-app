@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Button from '../../common/Button/Button'
 import { mockedCoursesList } from '../../constants'
 import CourseCard from './components/CourseCard/CourseCard'
@@ -18,11 +18,15 @@ function Courses({searchQuery, setSearchQuery}) {
     return <h2>Courses not found!</h2>
   }
 
+  function setCreatePage() {
+    navigate("/create")
+  }
+
   return (
     <>
       <div className="actions">
         <SearchBar setSearchQuery={setSearchQuery}/>
-        <Button navigate="/create" buttonText="Add new course" />
+        <Button onClick={setCreatePage} buttonText="Add new course" />
       </div>
       <>
       {

@@ -52,3 +52,10 @@
     align-items: center;
     justify-content: center;
 }
+
+.cardInfoAuthors {
+    width: 220px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

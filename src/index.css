@@ -33,7 +33,8 @@ select {
 body,
 p, ul, li, a, 
 h1, h2, h3, h4, h5, h6,
-button, select, button, textarea {
+button, select, button, textarea,
+dl, dt, dd {
   padding: 0;
   margin: 0;
 }

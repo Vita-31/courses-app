@@ -2,7 +2,7 @@ import './Input.css'
 
 function Input({type, placeholderText, name, ...props}) {
   return (
-    <input className='input' name={name} type={type || ''} placeholder={placeholderText} {...props}/>
+    <input className='input' name={name} type={type || 'text'} placeholder={placeholderText} {...props}/>
   )
 }
 

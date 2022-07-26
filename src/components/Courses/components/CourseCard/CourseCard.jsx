@@ -14,20 +14,20 @@ function CourseCard({course}) {
             <p className="cardDesc">{ course.description }</p>
         </div>
         <div className="cardBlock">
-            <div className="cardBlockInfo">
+            <dl className="cardBlockInfo">
                 <div className="cardInfo">
-                    <p className="cardInfoTitle">Authors:</p>
-                    <p>{courseAuthorsNames}</p>
+                    <dt className="cardInfoTitle">Authors:</dt>
+                    <dd className='cardInfoAuthors'>{courseAuthorsNames}</dd>
                 </div>
                 <div className="cardInfo">
-                    <p className="cardInfoTitle">Duration:</p>
-                    <p> {pipeGenerator(course.duration)} </p>
+                    <dt className="cardInfoTitle">Duration:</dt> 
+                    <dd> {pipeGenerator(course.duration)} </dd>
                 </div>
                 <div className="cardInfo">
-                    <p className="cardInfoTitle">Created:</p>
-                    <p>{ dateGeneration(course.creationDate) }</p>
+                    <dt className="cardInfoTitle">Created:</dt>
+                    <dd>{ dateGeneration(course.creationDate) }</dd>
                 </div>
-            </div>
+            </dl>
             <div className="cardBtn">
                 <Button buttonText="Show course"/>
             </div>
