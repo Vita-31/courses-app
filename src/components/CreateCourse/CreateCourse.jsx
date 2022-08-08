@@ -51,10 +51,6 @@ function CreateCourse() {
     navigate('/')
   }
 
-  if(allAuthors.length < 0 ) {
-    
-  }
-
   return (
     <div className='course'>
       <form onSubmit={addCourse}>
