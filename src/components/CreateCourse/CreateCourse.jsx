@@ -15,7 +15,6 @@ function CreateCourse() {
   const [allAuthors, setAllAuthors] = useState(mockedAuthorsList);
   const [courseAuthors, setCourseAuthors] = useState([])
 
-
   function createAuthor(event) {
     event.preventDefault()
     const newAuthor = {
