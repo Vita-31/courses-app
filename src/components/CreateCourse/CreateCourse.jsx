@@ -52,35 +52,42 @@ function CreateCourse() {
     navigate('/')
   }
 
+  if(allAuthors.length < 0 ) {
+    
+  }
+
   return (
     <div className='course'>
       <form onSubmit={addCourse}>
         <div className='courseTop'>
-          <div className="courseBlock">
-            <h2 className="title">Title:</h2>
-            <Input type="text" name="title" placeholder="Enter title"/>
-          </div>
+          <Input type="text" name="title" placeholder="Enter title" labelText="Title:"/>
           <Button buttonText="Add course" />
         </div>
         <div className="courseBlock">
-            <h2 className="title">Description:</h2>
-            <textarea className='textarea' name='description' placeholder="Enter description"></textarea>
-          </div>
+          <h2 className="courseBlockTitle">Description:</h2>
+          <textarea className='textarea' name='description' placeholder="Enter description"></textarea>
+        </div>
       </form>
       <div className="courseAuthors">
         <div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Add Author</h2>
-            <form className="courseBlock" onSubmit={createAuthor}>
-              <h2 className="title">Author name:</h2>
-              <Input type="text" name="name" placeholder="Enter author name"/>
+            <form onSubmit={createAuthor}>
+              <Input type="text" name="name" placeholder="Enter author name" labelText="Author name:"/>
             </form>
           </div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Duration</h2>
-            <form className="courseBlock">
-              <h2 className="title">Duration:</h2>
-              <Input type="number" name="duration" onChange={addMinutes} step="1" max="1000" placeholderText="Enter duration in minutes"/>
+            <form>
+              <Input 
+                labelText="Duration:"
+                type="number" 
+                name="duration" 
+                onChange={addMinutes} 
+                step="1" 
+                max="1000" 
+                placeholderText="Enter duration in minutes"
+              />
             </form>
             <div className="duration">
               <div className="title">Duration</div>
@@ -91,22 +98,23 @@ function CreateCourse() {
         <div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Authors</h2>
-            { allAuthors.map(author => {
-              return <div className="box" key={author.id}>
-                <div className="name">{author.name}</div>
-                <Button onClick={() => addAuthors(author)} buttonText="Add Author" />
-              </div>
-            })}
+            { allAuthors.length > 0 ?
+              allAuthors.map(author => {
+                return <div className="box" key={author.id}>
+                  <div className="name">{author.name}</div>
+                  <Button onClick={() => addAuthors(author)} buttonText="Add Author" />
+                </div>
+              }) : <div className='courseEmpty'>Авторів немає</div>}
           </div>
           <div className="courseAuthorsBlock">
             <h2 className="courseAuthorsTitle">Course authors</h2>
-            {/* <div className="courseEmpty">Authors list is empty</div> */}
-            { courseAuthors.map(author => {
-              return <div className="box" key={author.id}>
-                <div className="name">{author.name}</div>
-                <Button onClick={() => deleteAuthors(author)} buttonText="Delete Author" />
-              </div>
-            })}
+            {courseAuthors.length > 0 ? 
+              courseAuthors.map(author => {
+                return <div className="box" key={author.id}>
+                  <div className="name">{author.name}</div>
+                  <Button onClick={() => deleteAuthors(author)} buttonText="Delete Author" />
+                </div>
+              }) : <div className='courseEmpty'>Авторів немає</div>}
           </div>
         </div>
       </div>
