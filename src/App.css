@@ -1,5 +1,9 @@
 .page {
-    margin-top: 110px;
+    padding-top: 110px;
+    padding-bottom: 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .page__courses {
@@ -13,4 +17,65 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.auth {
+    width: 100%;
+    height: calc(100vh - 110px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth__content {
+    max-width: 450px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px 0;
+    margin: 0 auto;
+}
+
+.auth__title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 120%;
+    text-align: center;
+}
+
+.auth__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+}
+
+.auth-message {
+    text-align: center;
+    font-size: 16px;
+    line-height: 120%;
+    color: #222222;
+}
+
+.auth-message__link {
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    color: #0071FF;
+    margin-left: 5px;
+}
+
+.auth-message__link:hover {
+    color: #0071FF;
+    text-decoration: none;
+}
+
+.form__btn {
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width: 768px) {
+    .auth {
+        margin: 40px auto;
+    }
 }

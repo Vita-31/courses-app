@@ -48,31 +48,31 @@ function CreateCourse() {
       authors: courseAuthors.map(author => author.id)
     }
     setCourses(prev => [...prev, newCourse])
-    navigate('/')
+    navigate('/courses')
   }
 
   return (
-    <div className='course'>
+    <div className='create'>
       <form onSubmit={addCourse}>
-        <div className='courseTop'>
+        <div className='createTop'>
           <Input type="text" name="title" placeholder="Enter title" labelText="Title:"/>
           <Button buttonText="Add course" />
         </div>
-        <div className="courseBlock">
-          <h2 className="courseBlockTitle">Description:</h2>
+        <div className="createBlock">
+          <h2 className="createBlockTitle">Description:</h2>
           <textarea className='textarea' name='description' placeholder="Enter description"></textarea>
         </div>
       </form>
-      <div className="courseAuthors">
+      <div className="createAuthors">
         <div>
-          <div className="courseAuthorsBlock">
-            <h2 className="courseAuthorsTitle">Add Author</h2>
+          <div className="createAuthorsBlock">
+            <h2 className="createAuthorsTitle">Add Author</h2>
             <form onSubmit={createAuthor}>
               <Input type="text" name="name" placeholder="Enter author name" labelText="Author name:"/>
             </form>
           </div>
-          <div className="courseAuthorsBlock">
-            <h2 className="courseAuthorsTitle">Duration</h2>
+          <div className="createAuthorsBlock">
+            <h2 className="createAuthorsTitle">Duration</h2>
             <form>
               <Input 
                 labelText="Duration:"
@@ -91,25 +91,25 @@ function CreateCourse() {
           </div>
         </div>
         <div>
-          <div className="courseAuthorsBlock">
-            <h2 className="courseAuthorsTitle">Authors</h2>
+          <div className="createAuthorsBlock">
+            <h2 className="createAuthorsTitle">Authors</h2>
             { allAuthors.length > 0 ?
               allAuthors.map(author => {
                 return <div className="box" key={author.id}>
                   <div className="name">{author.name}</div>
                   <Button onClick={() => addAuthors(author)} buttonText="Add Author" />
                 </div>
-              }) : <div className='courseEmpty'>Авторів немає</div>}
+              }) : <div className='createEmpty'>Авторів немає</div>}
           </div>
-          <div className="courseAuthorsBlock">
-            <h2 className="courseAuthorsTitle">Course authors</h2>
+          <div className="createAuthorsBlock">
+            <h2 className="createAuthorsTitle">Course authors</h2>
             {courseAuthors.length > 0 ? 
               courseAuthors.map(author => {
                 return <div className="box" key={author.id}>
                   <div className="name">{author.name}</div>
                   <Button onClick={() => deleteAuthors(author)} buttonText="Delete Author" />
                 </div>
-              }) : <div className='courseEmpty'>Авторів немає</div>}
+              }) : <div className='createEmpty'>Авторів немає</div>}
           </div>
         </div>
       </div>

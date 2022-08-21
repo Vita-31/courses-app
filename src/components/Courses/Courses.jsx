@@ -7,19 +7,24 @@ import './Courses.css'
 
 
 function Courses({searchQuery, setSearchQuery}) {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem('token');
 
   const filteredCourses = mockedCoursesList.filter(course => {
     return `${course.id} ${course.title}`.toLocaleLowerCase().includes(searchQuery)
   })
-
-  const navigate = useNavigate();
 
   if(filteredCourses.length === 0) {
     return <h2>Courses not found!</h2>
   }
 
   function setCreatePage() {
-    navigate("/create")
+    navigate("/courses/add")
+  }
+
+  if(!token) {
+    navigate('/login')
   }
 
   return (

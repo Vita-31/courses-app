@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import Button from '../../../../common/Button/Button'
 import { mockedAuthorsList } from '../../../../constants'
 import { dateGeneration } from '../../../../helpers/dateGenerator'
@@ -7,6 +8,9 @@ import './CourseCard.css'
 function CourseCard({course}) {
    const courseAuthorsNames = course.authors.map((authorId) => mockedAuthorsList.find((author) => authorId === author.id )?.name ).join(', ')
 
+   function setShowCoursePage() {
+    // navigate('/courses/:courseId');
+   }
   return (
     <div className='card'>
         <div className="cardContent">
@@ -29,7 +33,7 @@ function CourseCard({course}) {
                 </div>
             </dl>
             <div className="cardBtn">
-                <Button buttonText="Show course"/>
+                <Button buttonText="Show course" onClick={setShowCoursePage}/>
             </div>
         </div>
     </div>

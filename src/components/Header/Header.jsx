@@ -1,15 +1,40 @@
 import './Header.css'
 import Logo from './components/Logo/Logo'
 import Button from '../../common/Button/Button'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
-function Header() {
+function Header({ loggedUser }) {
+  const [auth, setAuth] = useState(null);
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    setAuth(token)
+  }, [token])
+
+  function setLoginPage() {
+    navigate('/login')
+  }
+
+  function setLogout() {
+    localStorage.clear()
+    navigate('/login')
+  }
+
   return (
     <header className='header'>
         <div className="container headerContainer">
           <Logo/>
           <div className="headerActions">
-            <p className="headerProfile">Vita</p>
-            <Button buttonText="Login"/>
+            {auth && <p className="headerProfile">{loggedUser.name}</p>}
+
+            {auth
+            ? <Button buttonText="Logout" onClick={setLogout}/>
+            : <Button buttonText="Login" onClick={setLoginPage}/> 
+            }
           </div>
         </div>
     </header>
