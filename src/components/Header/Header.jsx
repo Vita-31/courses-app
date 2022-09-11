@@ -12,16 +12,16 @@ function Header({ loggedUser }) {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    setAuth(token)
+    setAuth(token);
   }, [token])
 
   function setLoginPage() {
-    navigate('/login')
+    navigate('/login');
   }
 
   function setLogout() {
-    localStorage.clear()
-    navigate('/login')
+    localStorage.removeItem('token');
+    navigate('/login');
   }
 
   return (

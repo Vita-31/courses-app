@@ -7,15 +7,15 @@ import Input from '../../common/Input/Input'
 export default function Login({ selLoggedUser }) {
 
     const [auth, setAuth] = useState(null);
+    const [error, setError] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if(auth) {
             navigate('/courses')
-        } else {
-            navigate('/login')
         }
+        // eslint-disable-next-line 
     }, [auth])
 
     function sendLogin(e) {
@@ -29,11 +29,14 @@ export default function Login({ selLoggedUser }) {
        }
 
        sendPost("http://localhost:3001/login", user)
-       .then(res => {
-            localStorage.setItem('token', res.accessToken)
-            setAuth(res.accessToken)
-            selLoggedUser(res.user)
-       })
+        .then(res => {
+                localStorage.setItem('token', res.accessToken)
+                setAuth(res.accessToken)
+                selLoggedUser(res.user)
+        })
+        .catch(err => {
+            setError(err.message)
+        })
     }
 
     async function sendPost(url = '', data = {}) {
@@ -44,6 +47,10 @@ export default function Login({ selLoggedUser }) {
               'Content-Type': 'application/json',
             },
         });
+        if(!response.ok) {
+            const data = await response.json();
+            return Promise.reject({code: response.status, message: data})
+        }
 
         return await response.json();
     }
@@ -55,6 +62,7 @@ export default function Login({ selLoggedUser }) {
             <form className='auth__form form' onSubmit={sendLogin}>
                 <Input labelText="Email" placeholderText="Enter email" type="email" name="email"/>
                 <Input labelText="Password" placeholderText="Enter password" type="password" name="password"/>
+                {error && <span className='error'>{error}</span>}
                 <div className="form__btn">
                     <Button type="submit" buttonText="Login"/>
                 </div>

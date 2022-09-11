@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'
 import Button from '../../common/Button/Button'
 import Input from '../../common/Input/Input'
 
 export default function Registration() {
     const navigate = useNavigate();
+
+    const [error, setError] = useState(null);
 
     function sendRegistration(e) {
         e.preventDefault();
@@ -24,6 +27,9 @@ export default function Registration() {
                     navigate('/login')
                 }
             })
+            .catch(err => {
+                setError(err.message)
+            })
     }
 
     async function sendPost(url = '', data = {}) {
@@ -34,6 +40,10 @@ export default function Registration() {
               'Content-Type': 'application/json',
             },
         });
+        if(!response.ok) {
+            const data = await response.json();
+            return Promise.reject({code: response.status, message: data})
+        }
 
         return await response.json();
     }
@@ -46,6 +56,7 @@ export default function Registration() {
                 <Input labelText="Name" placeholderText="Enter name" type="name" name="name"/>
                 <Input labelText="Email" placeholderText="Enter email" type="email" name="email"/>
                 <Input labelText="Password" placeholderText="Enter password" type="password" name="password"/>
+                {error && <span className='error'>{error}</span>}
                 <div className="form__btn">
                     <Button type="submit" buttonText="Registration"/>
                 </div>

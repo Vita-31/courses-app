@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Registration from './components/Registration/Registration'
 import Login from './components/Login/Login'
 import CourseInfo from './components/CourseInfo/CourseInfo'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
 
@@ -19,17 +20,33 @@ function App() {
       <Header loggedUser={loggedUser}></Header>
       <div className="page container">
         <Routes>
-          <Route path='/courses/add' element={<CreateCourse/>}/>
+          <Route path='/courses/add' element={
+            <ProtectedRoute isAuth='yes'>
+              <CreateCourse/>
+            </ProtectedRoute>
+          }/>
           <Route path='/courses' element={
-            <>
+            <ProtectedRoute isAuth="yes">
               <div className="page__courses">
                 <Courses searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
               </div>
-            </>
+            </ProtectedRoute>
           }/>
-          <Route path='/login' element={<Login selLoggedUser={selLoggedUser} />}/>
-          <Route path='/registration' element={<Registration/>}/>
-          <Route path='/courses/:courseId' element={<CourseInfo/>}/>
+          <Route path='/login' element={
+            <ProtectedRoute isAuth='no'>
+              <Login selLoggedUser={selLoggedUser} />
+            </ProtectedRoute>
+          }/>
+          <Route path='/registration' element={
+            <ProtectedRoute isAuth="no">
+              <Registration/>
+            </ProtectedRoute>
+          }/>
+          <Route path='/courses/:courseId' element={
+            <ProtectedRoute isAuth='yes'>
+              <CourseInfo/>
+            </ProtectedRoute>
+          }/>
         </Routes>
       </div>
     </BrowserRouter>
