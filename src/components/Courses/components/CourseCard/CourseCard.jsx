@@ -6,10 +6,11 @@ import { pipeGenerator } from '../../../../helpers/pipeDuration'
 import './CourseCard.css'
 
 function CourseCard({course}) {
+   const navigate = useNavigate();
    const courseAuthorsNames = course.authors.map((authorId) => mockedAuthorsList.find((author) => authorId === author.id )?.name ).join(', ')
 
    function setShowCoursePage() {
-    // navigate('/courses/:courseId');
+    navigate(`/courses/${course.id}`);
    }
   return (
     <div className='card'>

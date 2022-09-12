@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function ProtectedRoute({children, isAuth, to}) {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if(isAuth === 'yes' && !token) {
         navigate(to || '/login');
