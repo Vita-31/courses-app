@@ -1,19 +1,14 @@
-import './Header.css'
-import Logo from './components/Logo/Logo'
-import Button from '../../common/Button/Button'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import './Header.css';
+import Logo from './components/Logo/Logo';
+import Button from '../../common/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import useUsers from '../../hooks/UseUsers';
 
-function Header({ loggedUser }) {
-  const [auth, setAuth] = useState(null);
+function Header() {
+
+  const { token } = useUsers();
 
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    setAuth(token);
-  }, [token])
 
   function setLoginPage() {
     navigate('/login');
@@ -29,9 +24,9 @@ function Header({ loggedUser }) {
         <div className="container headerContainer">
           <Logo/>
           <div className="headerActions">
-            {auth && <p className="headerProfile">{loggedUser.name}</p>}
+            {token && <p className="headerProfile"></p>}
 
-            {auth
+            {token
             ? <Button buttonText="Logout" onClick={setLogout}/>
             : <Button buttonText="Login" onClick={setLoginPage}/> 
             }

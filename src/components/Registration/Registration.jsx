@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'
 import Button from '../../common/Button/Button'
 import Input from '../../common/Input/Input'
+import { sendPost } from '../../helpers/sendPost';
 
 export default function Registration() {
     const navigate = useNavigate();
@@ -30,22 +31,6 @@ export default function Registration() {
             .catch(err => {
                 setError(err.message)
             })
-    }
-
-    async function sendPost(url = '', data = {}) {
-        const response = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-        });
-        if(!response.ok) {
-            const data = await response.json();
-            return Promise.reject({code: response.status, message: data})
-        }
-
-        return await response.json();
     }
 
   return (

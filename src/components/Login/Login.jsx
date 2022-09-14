@@ -1,22 +1,16 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom'
-import Button from '../../common/Button/Button'
-import Input from '../../common/Input/Input'
+import { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Button from '../../common/Button/Button';
+import Input from '../../common/Input/Input';
+import { sendPost } from '../../helpers/sendPost';
+import useUsers from '../../hooks/UseUsers';
 
-export default function Login({ selLoggedUser }) {
+export default function Login() {
 
-    const [auth, setAuth] = useState(null);
+    const navigate = useNavigate()
+
+    const {token, setToken, setUserId} = useUsers();
     const [error, setError] = useState(null);
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if(auth) {
-            navigate('/courses')
-        }
-        // eslint-disable-next-line 
-    }, [auth])
 
     function sendLogin(e) {
         e.preventDefault();
@@ -30,30 +24,21 @@ export default function Login({ selLoggedUser }) {
 
        sendPost("http://localhost:3001/login", user)
         .then(res => {
-                localStorage.setItem('token', res.accessToken)
-                setAuth(res.accessToken)
-                selLoggedUser(res.user)
+            setToken(res.accessToken);
+            setUserId(res.user.id);
+
         })
         .catch(err => {
-            setError(err.message)
+            setError(err.message);
         })
     }
 
-    async function sendPost(url = '', data = {}) {
-        const response = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-        });
-        if(!response.ok) {
-            const data = await response.json();
-            return Promise.reject({code: response.status, message: data})
+    useEffect(() => {
+        if(token !== null) {
+            navigate('/courses');
         }
-
-        return await response.json();
-    }
+        // eslint-disable-next-line 
+    }, [token])
 
   return (
     <div className='auth'>
