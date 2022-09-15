@@ -9,7 +9,7 @@ export default function Login() {
 
     const navigate = useNavigate()
 
-    const {token, setToken, setUserId} = useUsers();
+    const {token, setUserId} = useUsers();
     const [error, setError] = useState(null);
 
     function sendLogin(e) {
@@ -24,9 +24,9 @@ export default function Login() {
 
        sendPost("http://localhost:3001/login", user)
         .then(res => {
-            setToken(res.accessToken);
-            setUserId(res.user.id);
-
+            localStorage.setItem('token', res.accessToken);
+            setUserId(res.user.id)
+            // localStorage.setItem('userId', res.user.id);
         })
         .catch(err => {
             setError(err.message);

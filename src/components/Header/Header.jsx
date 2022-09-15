@@ -7,7 +7,7 @@ import useUsers from '../../hooks/UseUsers';
 function Header() {
 
   const { token, user } = useUsers();
-
+  console.log(user)
   const navigate = useNavigate();
 
   function setLoginPage() {
@@ -18,7 +18,7 @@ function Header() {
     localStorage.removeItem('token');
     navigate('/login');
   }
-  console.log(user)
+  
   return (
     <header className='header'>
         <div className="container headerContainer">

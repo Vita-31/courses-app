@@ -7,11 +7,11 @@ export const UsersContext = createContext();
 
 export default function UsersProvider({children}) {
 
-    const [token, setToken] = useState(null);
-    const [userId, setUserId] = useState(null);
     const [user, setUser] = useState(null);
+    const [userId, setUserId] = useState(null);
 
-    localStorage.setItem('token', token);
+    const token = localStorage.getItem('token');
+    // const userId = localStorage.getItem('userId');
 
     useEffect(() => {
         if(userId) {
@@ -21,6 +21,6 @@ export default function UsersProvider({children}) {
         }
     }, [userId])
 
-    const usersData = {token, userId, user, setToken, setUserId, setUser};
+    const usersData = {token, userId, user, setUser, setUserId};
     return <UsersContext.Provider value={usersData}>{children}</UsersContext.Provider>
 }
