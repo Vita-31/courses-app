@@ -6,7 +6,7 @@ import useUsers from '../../hooks/UseUsers';
 
 function Header() {
 
-  const { token } = useUsers();
+  const { token, user } = useUsers();
 
   const navigate = useNavigate();
 
@@ -18,14 +18,13 @@ function Header() {
     localStorage.removeItem('token');
     navigate('/login');
   }
-
+  console.log(user)
   return (
     <header className='header'>
         <div className="container headerContainer">
           <Logo/>
           <div className="headerActions">
-            {token && <p className="headerProfile"></p>}
-
+            {token && <p className="headerProfile">{user?.name}</p>}
             {token
             ? <Button buttonText="Logout" onClick={setLogout}/>
             : <Button buttonText="Login" onClick={setLoginPage}/> 

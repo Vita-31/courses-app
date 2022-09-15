@@ -34,7 +34,7 @@ export default function Login() {
     }
 
     useEffect(() => {
-        if(token !== null) {
+        if(token) {
             navigate('/courses');
         }
         // eslint-disable-next-line 
