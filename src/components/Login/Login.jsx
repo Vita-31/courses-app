@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
-import { sendPost } from '../../helpers/sendPost';
 import useUsers from '../../hooks/UseUsers';
+import { sendPost } from '../../services';
 
 export default function Login() {
 

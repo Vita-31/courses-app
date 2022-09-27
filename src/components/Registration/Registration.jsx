@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'
 import Button from '../../common/Button/Button'
 import Input from '../../common/Input/Input'
-import { sendPost } from '../../helpers/sendPost';
+import { sendPost } from '../../services';
 
 export default function Registration() {
     const navigate = useNavigate();

@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import UsersProvider from './context/UsersContext';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <UsersProvider>
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
-  </UsersProvider>
+  <Provider store={store}>
+    <UsersProvider>
+      <React.StrictMode>
+          <App />
+      </React.StrictMode>
+    </UsersProvider>
+  </Provider>
 );

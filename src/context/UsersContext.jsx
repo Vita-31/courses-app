@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { createContext } from "react";
-import { getData } from "../helpers/getData";
+import { getData } from "../services";
 
 export const UsersContext = createContext();
 
@@ -12,7 +12,6 @@ export default function UsersProvider({children}) {
 
     const token = localStorage.getItem('token');
     // const userId = localStorage.getItem('userId');
-
     useEffect(() => {
         if(userId) {
             getData(`http://localhost:3001/users/${userId}`)
