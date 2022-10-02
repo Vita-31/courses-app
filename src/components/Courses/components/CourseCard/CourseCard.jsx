@@ -1,17 +1,26 @@
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../../../common/Button/Button'
 import { mockedAuthorsList } from '../../../../constants'
 import { dateGeneration } from '../../../../helpers/dateGenerator'
 import { pipeGenerator } from '../../../../helpers/pipeDuration'
+import { deleteCourse } from '../../../../store/courses/actionCreators'
 import './CourseCard.css'
 
 function CourseCard({course}) {
-   const navigate = useNavigate();
-   const courseAuthorsNames = course.authors.map((authorId) => mockedAuthorsList.find((author) => authorId === author.id )?.name ).join(', ')
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-   function setShowCoursePage() {
-    navigate(`/courses/${course.id}`);
-   }
+    const courseAuthorsNames = course.authors.map((authorId) => mockedAuthorsList.find((author) => authorId === author.id )?.name ).join(', ')
+
+    function setShowCoursePage() {
+        navigate(`/courses/${course.id}`);
+    }
+
+    function setDeleteCourse() {
+        dispatch(deleteCourse(course.id))
+    }
+
   return (
     <div className='card'>
         <div className="cardContent">
@@ -35,6 +44,8 @@ function CourseCard({course}) {
             </dl>
             <div className="cardBtn">
                 <Button buttonText="Show course" onClick={setShowCoursePage}/>
+                <Button buttonText="Delete" onClick={setDeleteCourse}/>
+                <Button buttonText="Update"/>
             </div>
         </div>
     </div>

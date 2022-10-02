@@ -9,5 +9,5 @@ export function authorsReducer(state = initialState, action) {
 }
 
 export function authorsSelectors(state) {
-    return state.user
+    return state.authors
 }

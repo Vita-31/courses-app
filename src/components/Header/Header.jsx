@@ -7,7 +7,6 @@ import useUsers from '../../hooks/UseUsers';
 function Header() {
 
   const { token, user } = useUsers();
-  console.log(user)
   const navigate = useNavigate();
 
   function setLoginPage() {
