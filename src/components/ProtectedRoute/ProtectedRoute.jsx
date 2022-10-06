@@ -1,11 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useUsers from '../../hooks/UseUsers';
 
 export default function ProtectedRoute({children, isAuth, to}) {
   
-  const { token } = useUsers();
+  // const { token } = useUsers();
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   
   useEffect(() => {

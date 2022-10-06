@@ -1,19 +1,36 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button'
 import Input from '../../common/Input/Input'
-import { mockedAuthorsList } from '../../constants';
 import { pipeGenerator } from '../../helpers/pipeDuration';
+import { authorsSelectors } from '../../store/authors/selectors';
+import { getData } from '../../services';
+import { getAuthors } from '../../store/authors/actionCreators';
 import './CreateCourse.css'
+import { addNewCourse } from '../../store/courses/actionCreators';
+import { coursesSelectors } from '../../store/courses/selectors';
 
 function CreateCourse() {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const authorsList = useSelector(authorsSelectors);
+  const courses = useSelector(coursesSelectors);
 
   const [duration, setDuration] = useState('');
-  const [courses, setCourses] = useState({});
-  const [allAuthors, setAllAuthors] = useState(mockedAuthorsList);
-  const [courseAuthors, setCourseAuthors] = useState([])
+  // const [courses, setCourses] = useState({});
+  const [allAuthors, setAllAuthors] = useState(authorsList);
+  const [courseAuthors, setCourseAuthors] = useState([]);
+
+  useEffect(() => {
+    if(!authorsList) {
+      getData('http://localhost:3001/authors')
+      .then(res => dispatch(getAuthors(res)))
+      .catch(err => console.log(err))
+    }
+  }, [authorsList])
 
   function createAuthor(event) {
     event.preventDefault()
@@ -25,6 +42,7 @@ function CreateCourse() {
   }
 
   function addMinutes(event) {
+    event.preventDefault();
     setDuration(Number(event.target.value))
   }
 
@@ -47,7 +65,9 @@ function CreateCourse() {
       duration,
       authors: courseAuthors.map(author => author.id)
     }
-    setCourses(prev => [...prev, newCourse])
+
+    dispatch(addNewCourse(newCourse))
+    // setCourses(prev => [...prev, newCourse])
     navigate('/courses')
   }
 

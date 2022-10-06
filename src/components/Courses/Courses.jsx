@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar/SearchBar'
 import { coursesSelectors } from "../../store/courses/selectors"
 import { getCourses } from '../../store/courses/actionCreators'
 import { useEffect } from 'react'
+import './Courses.css'
 
 function Courses({searchQuery, setSearchQuery}) {
 

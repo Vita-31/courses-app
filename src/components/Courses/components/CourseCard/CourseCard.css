@@ -47,10 +47,11 @@
     font-size: 18px;
 }
 
-.cardBtn {
+.cardBtns {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .cardInfoAuthors {

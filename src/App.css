@@ -2,8 +2,8 @@
     padding-top: 110px;
     padding-bottom: 20px;
     height: 100%;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
 }
 
 .page__courses {
