@@ -21,13 +21,16 @@ function Header() {
       .then(res => {
         dispatch(getUser(res))
       })
+      // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     if(token) {
       dispatch(getUserToken(token))
       dispatch(isAuthUser())
+      navigate('/courses');
     }
+    // eslint-disable-next-line
   }, [token])
 
   function setLoginPage() {

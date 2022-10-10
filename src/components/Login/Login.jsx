@@ -1,22 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 import { sendPost } from '../../services';
+import { getUser } from '../../store/user/actionCreators';
 
 export default function Login() {
 
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const [error, setError] = useState(null);
-
-    // не зрозуміла для чого цей блок саме при вході
-    // useEffect(() => {
-    //     if(token) {
-    //         navigate('/courses');
-    //     }
-    //     // eslint-disable-next-line 
-    // }, [token])
 
     function sendLogin(e) {
         e.preventDefault();
@@ -30,12 +24,8 @@ export default function Login() {
 
        sendPost("http://localhost:3001/login", user)
         .then(res => {
-            //state
-            // dispatch(getUserToken(res.accessToken))
-
-            // context
+            dispatch(getUser(res.user))
             localStorage.setItem('token', res.accessToken);
-            // setUserId(res.user.id)
             localStorage.setItem('userId', res.user.id);
 
             if(res.accessToken) {
